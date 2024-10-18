@@ -29,16 +29,18 @@ public class Main {
         for (int i = 0; i < array.size(); ++i){
             arithmetic += array.get(i);
         }
-        double arithmeticFin = arithmetic / array.size();
 
-        double geometric = 0;
+        double geometric = 1;
         for (int i = 1; i < array.size(); ++i){
             geometric *= array.get(i);
         }
+
+        double arithmeticFin = arithmetic / array.size();
+        
         double geometricFin = Math.pow(geometric, 1.0 / array.size());
 
-        System.out.printf("Средняя арифметическая: %.2f%n", arithmeticFin);
-        System.out.printf("Средняя геометрическая: %.2f%n", geometricFin);
+        System.out.println("Средняя арифметическая: " + arithmeticFin);
+        System.out.println("Средняя геометрическая: " + geometricFin);
 
         scanner.close();
     }
