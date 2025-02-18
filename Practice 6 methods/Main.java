@@ -57,8 +57,6 @@ public class Main {
 
     public static String reverseStringByChar(String userString){
 
-        Error();
-
         char[] strToChar = userString.toCharArray();
         String reversedString = "";
 
@@ -72,8 +70,6 @@ public class Main {
     }
 
     public static String reverseString(String userstString){
-
-        Error();
 
         char[] strToChar = userstString.toCharArray();
 
