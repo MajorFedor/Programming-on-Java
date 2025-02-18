@@ -57,6 +57,8 @@ public class Main {
 
     public static String reverseStringByChar(String userString){
 
+        Error();
+
         char[] strToChar = userString.toCharArray();
         String reversedString = "";
 
@@ -70,6 +72,8 @@ public class Main {
     }
 
     public static String reverseString(String userstString){
+
+        Error();
 
         char[] strToChar = userstString.toCharArray();
 
@@ -88,6 +92,15 @@ public class Main {
         
         return reversedStringSecond;
     }
+
+    public static boolean Error() {
+        if (userString == null || userString.isEmpty()) {
+            System.out.println("Error. Try using the first function (String checker) first.");
+            return true;
+        }
+        return false;
+    }
+    
     public static void main(String[] args) {
         while (true) {
 
@@ -111,9 +124,13 @@ public class Main {
                 if(choice == 1){
                     stringCheck();
                 } else if(choice == 2 ){
-                    reverseStringByChar(userString);
+                    if(!Error()){
+                        reverseStringByChar(userString);
+                    }
                 } else if(choice == 3){
-                    reverseString(userString);
+                    if(!Error()){
+                        reverseString(userString);
+                    }
                 } else {
                     System.out.println("Uncorrect choice. try again");
                     continue;
