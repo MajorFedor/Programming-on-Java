@@ -34,7 +34,7 @@ public class Main {
         return validate;
     }
 
-    public static boolean passwordValidate(String password){ //ДОПИСАТЬ КОД
+    public static boolean passwordValidate(String password){ //ДОПИСАТЬ КОД - correct
         String str = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
         boolean validate = true;
 
