@@ -4,8 +4,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import utils.FileUtils;
-
 public class MyDiary {
     public static final int size = 70;
     public static final LocalDateTime[] data = new LocalDateTime[size];
