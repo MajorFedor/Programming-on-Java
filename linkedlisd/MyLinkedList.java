@@ -23,7 +23,7 @@ public class MyLinkedList {
 
     public void addtoMiddle(Integer index,Integer data){
         
-        if(index < 0 || index > size){
+        if(index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
 
@@ -36,8 +36,8 @@ public class MyLinkedList {
 
         Node previousNode = current.getPreviousNode();
         Node nextNode = current.getNextNode();
-        newNode.setNextNode(current);
-        newNode.setPreviousNode(previousNode);
+        newNode.setNextNode(previousNode);
+        newNode.setPreviousNode(current);
         newNode.setNextNode(nextNode);
         size++;
     }
@@ -52,12 +52,13 @@ public class MyLinkedList {
             newNode.setNextNode(head);
             head.setPreviousNode(newNode);
             head = newNode;
+            size++;
         }
     }
     
     public int getbyId(Integer id){
 
-        if(id < 0 || id > size){
+        if(id < 0 || id >+ size){
             throw new IndexOutOfBoundsException();
         }
 
