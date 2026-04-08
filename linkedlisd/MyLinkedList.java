@@ -58,7 +58,7 @@ public class MyLinkedList {
     
     public int getbyId(Integer id){
 
-        if(id < 0 || id >+ size){
+        if(id < 0 || id >= size){
             throw new IndexOutOfBoundsException();
         }
 
