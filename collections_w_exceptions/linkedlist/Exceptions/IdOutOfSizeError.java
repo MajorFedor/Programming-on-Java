@@ -1,4 +1,4 @@
-package linkedlist.Exceptions;
+package collections_w_exceptions.linkedlist.Exceptions;
 
 public class IdOutOfSizeError extends IndexOutOfBoundsException{
     public IdOutOfSizeError(Integer id){

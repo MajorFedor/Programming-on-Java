@@ -1,6 +1,6 @@
-package linkedlist;
+package collections_w_exceptions.linkedlist;
 
-import linkedlist.Exceptions.ErrorIndexException;
+import collections_w_exceptions.linkedlist.Exceptions.ErrorIndexException;
 
 public class Main {
     public static void main(String[] args){

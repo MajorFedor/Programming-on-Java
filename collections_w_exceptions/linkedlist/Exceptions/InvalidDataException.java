@@ -1,5 +1,4 @@
-
-package linkedlist.Exceptions;
+package collections_w_exceptions.linkedlist.Exceptions;
 
 import java.util.InputMismatchException;
 

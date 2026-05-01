@@ -1,11 +1,11 @@
-package linkedlist;
+package collections_w_exceptions.linkedlist;
 
 import java.util.Scanner;
 
-import linkedlist.Exceptions.ErrorIndexException;
-import linkedlist.Exceptions.IdOutOfSizeError;
-import linkedlist.Exceptions.InvalidDataException;
-import linkedlist.Exceptions.InvalidCapacityException;
+import collections_w_exceptions.linkedlist.Exceptions.ErrorIndexException;
+import collections_w_exceptions.linkedlist.Exceptions.IdOutOfSizeError;
+import collections_w_exceptions.linkedlist.Exceptions.InvalidCapacityException;
+import collections_w_exceptions.linkedlist.Exceptions.InvalidDataException;
 
 public class MyLinkedList {
     private Node head;

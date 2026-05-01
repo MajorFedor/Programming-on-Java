@@ -1,4 +1,4 @@
-package linkedlist;
+package collections_w_exceptions.linkedlist;
 
 class Node {
     private Node previous;
