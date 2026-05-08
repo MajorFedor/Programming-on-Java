@@ -1,14 +1,13 @@
 package linkedlist;
 
 import java.util.Scanner;
-
 import collections_w_exceptions.linkedlist.Exceptions.InvalidCapacityException;
 
 public class MyLinkedList {
     private Node head;
     private Node tail;
-    private int size;
-    private int capacity;
+    private int size= 0;
+    private int capacity =0;
 
     public MyLinkedList(int cap){
         if(cap > 0){
@@ -50,14 +49,14 @@ public class MyLinkedList {
         size++;
     }
     
-    public void addtohead(Integer data){
+    public void addtohead(Integer data) {
         Node newNode = new Node(data);
 
-        if(head == null){
+        if (head == null) {
             head = newNode;
             tail = newNode;
             size++;
-        } else{
+        } else {
             newNode.setNextNode(head);
             head.setPreviousNode(newNode);
             head = newNode;

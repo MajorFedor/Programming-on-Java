@@ -15,9 +15,7 @@ public class Main {
 
         System.out.println("Head: " + list.getbyId(0));
 
-        list.addtoMiddle(4, 134);
-
-
+        list.addtoMiddle(2, 134);
         
 
         System.out.println("Index 2: " + list.getbyId(2));
