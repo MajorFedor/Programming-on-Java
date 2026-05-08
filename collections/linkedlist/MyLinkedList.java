@@ -2,10 +2,21 @@ package linkedlist;
 
 import java.util.Scanner;
 
+import collections_w_exceptions.linkedlist.Exceptions.InvalidCapacityException;
+
 public class MyLinkedList {
     private Node head;
     private Node tail;
     private int size;
+    private int capacity;
+
+    public MyLinkedList(int cap){
+        if(cap > 0){
+            this.capacity = cap;
+        } else {
+            throw new InvalidCapacityException(cap);
+        }
+    }
 
     public void addToTail(Integer data) {
         Node newNode = new Node(data);
@@ -21,24 +32,21 @@ public class MyLinkedList {
         size++;
     }
 
-    public void addtoMiddle(Integer index,Integer data){
-        
-        if(index < 0 || index >= size){
-            throw new IndexOutOfBoundsException();
-        }
-
+    public void addtoMiddle(Integer index, Integer data) {
         Node newNode = new Node(data);
 
         Node current = head;
-        for(int i = 0 ; i < index; i++){
+        for (int i = 0; i < index; i++) {
             current = current.getNextNode();
         }
 
         Node previousNode = current.getPreviousNode();
-        Node nextNode = current.getNextNode();
-        newNode.setNextNode(previousNode);
-        newNode.setPreviousNode(current);
-        newNode.setNextNode(nextNode);
+
+        newNode.setPreviousNode(previousNode);
+        newNode.setNextNode(current);
+        current.setPreviousNode(newNode);
+        previousNode.setNextNode(newNode);
+
         size++;
     }
     
@@ -48,6 +56,7 @@ public class MyLinkedList {
         if(head == null){
             head = newNode;
             tail = newNode;
+            size++;
         } else{
             newNode.setNextNode(head);
             head.setPreviousNode(newNode);
@@ -75,12 +84,12 @@ public class MyLinkedList {
     }
 
     public Integer getCapacity(){
-        return size;
+        return capacity;
     }
 
     public void rempveByIndex(Integer index){
 
-        if(index < 0 || index > size){
+        if(index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
 
@@ -104,7 +113,7 @@ public class MyLinkedList {
         } else{
             nextNode.setPreviousNode(prevNode);
         }
-        size++;
+        size--;
         
     }
 
