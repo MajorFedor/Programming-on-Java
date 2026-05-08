@@ -1,6 +1,6 @@
 package collections_w_exceptions.linkedlist;
 
-class Node {
+public class Node implements Comparable<Node>{
     private Node previous;
     private Integer data;
     private Node next;
@@ -33,5 +33,10 @@ class Node {
 
     public void setNextNode(Node node){
         this.next = node;
+    }
+
+    @Override
+    public int compareTo(Node a){
+        return this.data.compareTo(a.data);
     }
 }

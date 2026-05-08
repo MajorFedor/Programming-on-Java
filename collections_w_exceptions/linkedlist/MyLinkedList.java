@@ -1,5 +1,6 @@
 package collections_w_exceptions.linkedlist;
 
+import java.util.Comparator;
 import java.util.Scanner;
 
 import collections_w_exceptions.linkedlist.Exceptions.ErrorIndexException;
@@ -140,6 +141,34 @@ public class MyLinkedList {
             sc.next();
         } finally {
             sc.close();
+        }
+    }
+
+    public void sort(){
+        for(int i = 0; i < size - 1; i++){
+            Node tempNode = head;
+            for(int j = 0; j <size - i - 1; j++){
+                if(tempNode.compareTo(tempNode.getNextNode()) > 0){
+                    int tempNode2 = tempNode.getData();
+                    tempNode.setData(tempNode.getNextNode().getData());
+                    tempNode.getNextNode().setData(tempNode2);
+                }
+                tempNode =tempNode.getNextNode();
+            }
+        }
+    }
+
+    public void sort(Comparator<Node> compar){
+        for(int i = 0; i < size - 1; i++){
+            Node tempNode = head;
+            for(int j = 0; j <size - i - 1; j++){
+                if(compar.compare(tempNode, tempNode.getNextNode()) < 0){
+                    int tempNode2 = tempNode.getData();
+                    tempNode.setData(tempNode.getNextNode().getData());
+                    tempNode.getNextNode().setData(tempNode2);
+                }
+                tempNode =tempNode.getNextNode();
+            }
         }
     }
 }
