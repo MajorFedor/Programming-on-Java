@@ -1,0 +1,4 @@
+4 2024-01-15T10:23:15Z INFO UserModule User admin logged in successfully
+7 2024-01-15T10:23:30Z INFO DatabaseModule Query executed in 120ms
+11 2024-01-15T10:23:50Z INFO RequestModule POST /api/login request received
+14 2024-01-15T10:24:05Z INFO UserModule User guest logged out
