@@ -1,3 +1,0 @@
-5 2024-01-15T10:23:20Z DEBUG RequestModule GET /api/users request received
-8 2024-01-15T10:23:35Z DEBUG NetworkModule Packet size 1024 bytes
-13 2024-01-15T10:24:00Z DEBUG AuthModule Token validation started

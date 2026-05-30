@@ -1,3 +1,0 @@
-3 2024-01-15T10:23:10Z WARNING NetworkModule High memory usage detected 85%
-10 2024-01-15T10:23:45Z WARNING AuthModule Multiple failed login attempts
-15 2024-01-15T10:24:10Z WARNING DatabaseModule Slow query detected 5000ms
