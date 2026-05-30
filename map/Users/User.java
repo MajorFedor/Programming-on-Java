@@ -1,15 +1,16 @@
 package map.Users;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 import map.UserIdentifire.UserIdentifire;
 
-public class User{
+public class User implements Serializable{
     private UserIdentifire userIdentifire;
     private String password;
-    private LocalDateTime lastLoginDate;
-    private boolean isLoggedIn;
+    private transient LocalDateTime lastLoginDate;
+    private transient boolean isLoggedIn;
     private static Integer maxId = 1;
 
     public User(Integer id, String name, String password){

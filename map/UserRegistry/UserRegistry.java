@@ -1,9 +1,14 @@
 package map.UserRegistry;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.function.Predicate;
 
@@ -12,6 +17,18 @@ import map.UserIdentifire.UserIdentifire;
 
 public class UserRegistry {
     HashMap<UserIdentifire,User> userList = new HashMap<>();
+    private String userListPath = null;
+
+    String userFileName= "userList.txt";
+    File userListFile = new File(userListPath, userFileName);
+
+    public String getUserListPath(){
+        return userListPath;
+    }
+
+    public void setUserListPath(String path){
+        userListPath = path;
+    }
 
     public void registerUser(String name, String password){
         for( var user : userList.values()){
@@ -108,5 +125,32 @@ public class UserRegistry {
             }
         }
         return result;
+    }
+
+    public void saveUsers(){
+        try {
+            if(!userListFile.exists()){
+                userListFile.createNewFile();
+            }
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(userListFile))) {
+                oos.writeObject(userList);
+                System.out.println("User list are serialization.");
+            } catch (IOException e) {
+                System.out.println("Eror: " + e.getMessage());
+            }
+        } catch (IOException e) {
+            System.out.println("Eror: " + e.getMessage());
+        }
+    }
+
+    public HashMap<UserIdentifire, User> loadUsers(){
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(userListFile))){
+            userList = (HashMap<UserIdentifire, User>) ois.readObject();
+            return userList;
+        } catch (Exception e) {
+            System.out.println("Eror: " + e.getMessage());
+        }
+        return null;
     }
 }

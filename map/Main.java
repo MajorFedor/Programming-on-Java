@@ -8,10 +8,21 @@ import map.Users.User;
 public class Main {
 
     private static Scanner sc = new Scanner(System.in);
-    private static UserRegistry userActions = new UserRegistry();
+    private static UserRegistry userRegistry = new UserRegistry();
     private static User currentUser = null;
 
     public static void main(String[] args) {
+
+        System.out.print("Restore users from file? ");
+        String answer = sc.nextLine().toLowerCase();
+        
+        if (answer.equals("yes")) {
+            System.out.print("Enter file path: ");
+            String path = sc.nextLine();
+            userRegistry.setUserListPath(path);
+            userRegistry.loadUsers();
+        }
+
         loginMenu();
     }
 
@@ -50,9 +61,17 @@ public class Main {
                     actionsMenu();
                     break;
                 case 4:
-                    System.out.println("Exit.");
-                    sc.close();
-                    return;
+                System.out.print("Save users to file before exit? (yes/no): ");
+                String save = sc.nextLine().trim().toLowerCase();
+                if (save.equals("yes")) {
+                    System.out.print("Enter file path: ");
+                    String path = sc.nextLine();
+                    userRegistry.setUserListPath(path);
+                    userRegistry.saveUsers();
+                }
+                System.out.println("Exit.");
+                sc.close();
+                return;
                 default:
                     System.out.println("Invalid option.");
             }
@@ -91,7 +110,7 @@ public class Main {
                     }
                     System.out.print("Enter login to check: ");
                     String login = sc.next();
-                    userActions.isUserRegistered(login);
+                    userRegistry.isUserRegistered(login);
                     break;
                 case 2:
                     if (!checkLoggedIn()) {
@@ -101,7 +120,7 @@ public class Main {
                     if (sc.hasNextInt()) {
                         int id = sc.nextInt();
                         sc.nextLine();
-                        userActions.removeUser(id);
+                        userRegistry.removeUser(id);
                     } else {
                         sc.nextLine();
                         System.out.println("Type number.");
@@ -116,7 +135,7 @@ public class Main {
                     if (sc.hasNextInt()) {
                         int id = sc.nextInt();
                         sc.nextLine();
-                        userActions.logoutUser(id);
+                        userRegistry.logoutUser(id);
                         if (currentUser != null && currentUser.getId().equals(id)) {
                             currentUser = null;
                             System.out.println("You logged out. Returning to login menu.");
@@ -131,13 +150,13 @@ public class Main {
                     if (!checkLoggedIn()) {
                         return;
                     }
-                    userActions.printTotalUniqueUser();
+                    userRegistry.printTotalUniqueUser();
                     break;
                 case 5:
                     if (!checkLoggedIn()) {
                         return;
                     }
-                    userActions.displayAllUsers();
+                    userRegistry.displayAllUsers();
                     break;
                 case 6:
                     if (!checkLoggedIn()) {
@@ -179,10 +198,10 @@ public class Main {
         LinkedList<User> sorted;
         switch (choice) {
             case 1:
-                sorted = userActions.getInOrder((u1, u2) -> u1.getName().compareTo(u2.getName()));
+                sorted = userRegistry.getInOrder((u1, u2) -> u1.getName().compareTo(u2.getName()));
                 break;
             case 2:
-                sorted = userActions.getInOrder((u1, u2) -> u1.getId() - u2.getId());
+                sorted = userRegistry.getInOrder((u1, u2) -> u1.getId() - u2.getId());
                 break;
             default:
                 System.out.println("Invalid option.");
@@ -213,16 +232,16 @@ public class Main {
         LinkedList<User> filtered;
         switch (choice) {
             case 1:
-                filtered = userActions.getFiltered(user -> user.isLoggedIn());
+                filtered = userRegistry.getFiltered(user -> user.isLoggedIn());
                 break;
             case 2:
-                filtered = userActions.getFiltered(user -> !user.isLoggedIn());
+                filtered = userRegistry.getFiltered(user -> !user.isLoggedIn());
                 break;
             case 3:
                 System.out.print("Enter id: ");
                 int id = sc.nextInt();
                 sc.nextLine();
-                filtered = userActions.getFiltered(user -> user.getId() > id);
+                filtered = userRegistry.getFiltered(user -> user.getId() > id);
                 break;
             default:
                 System.out.println("Invalid option.");
@@ -248,7 +267,7 @@ public class Main {
         System.out.print("Enter password: ");
         String password = sc.next();
 
-        User user = userActions.loginUser(name, password);
+        User user = userRegistry.loginUser(name, password);
         if (user != null) {
             currentUser = user;
             System.out.println("Login successful! Welcome, " + name + ".");
@@ -262,7 +281,7 @@ public class Main {
         String name = sc.next();
         System.out.print("Enter new password: ");
         String password = sc.next();
-        userActions.registerUser(name, password);
+        userRegistry.registerUser(name, password);
     }
 
     private static boolean checkLoggedIn() {

@@ -1,8 +1,9 @@
 package map.UserIdentifire;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class UserIdentifire {
+public class UserIdentifire implements Serializable{
     private int id;
     private String name;
 
