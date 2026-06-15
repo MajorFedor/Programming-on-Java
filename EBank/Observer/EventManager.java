@@ -27,6 +27,11 @@ public class EventManager implements Serializable{
         users.remove(listener);
     }
 
+    public void clearListeners(BankEvent eventType){
+        List<EventListener> users = listeners.get(eventType);
+        users.clear();
+    }
+
     public void notify(BankEvent eventType, String info) {
         List<EventListener> users = listeners.get(eventType);
         for (EventListener listener : users) {

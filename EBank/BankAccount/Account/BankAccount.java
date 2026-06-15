@@ -80,6 +80,10 @@ public abstract class BankAccount implements Serializable{
         return id; 
     }
 
+    public static long getNextId() {
+        return nextId;
+    }
+
     public double getBalance() {
         return balance;
     }
@@ -90,6 +94,10 @@ public abstract class BankAccount implements Serializable{
 
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public static void setNextId(long nextId) {
+        BankAccount.nextId = nextId;
     }
 
     @Override

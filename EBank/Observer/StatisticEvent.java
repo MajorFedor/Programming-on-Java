@@ -10,7 +10,14 @@ import java.util.Map;
 public class StatisticEvent implements EventListener{
     private final Map<BankEvent, Integer> statistic = new HashMap<>();
     private final List<String> logs = new ArrayList<>();
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+    private transient DateTimeFormatter formatter;
+
+    private DateTimeFormatter getFormatter() {
+        if (formatter == null) {
+            formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+        }
+        return formatter;
+    }
 
     @Override
     public void onEvent(BankEvent event, String addInfo, LocalDateTime ts) {
@@ -19,7 +26,7 @@ public class StatisticEvent implements EventListener{
         } else {
             statistic.put(event, 1);
         }
-        logs.add(ts.format(formatter) + " | " + event.getDescription() + " | " + addInfo);
+        logs.add(ts.format(getFormatter()) + " | " + event.getDescription() + " | " + addInfo);
     }
 
     public void printStatistics() {

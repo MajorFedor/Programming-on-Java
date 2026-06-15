@@ -6,7 +6,8 @@ import EBank.Bank;
 public class MainMenu {
 
     private static final Scanner sc = new Scanner(System.in);
-    private static final Bank bank = Bank.getInstance("EBank");
+    private static final String SAVE_FILE = "bank.txt";
+    private static final Bank bank = loadBank();
 
     private static final String MENU = """
             
@@ -18,7 +19,17 @@ public class MainMenu {
             ========================
             """;
 
+    private static Bank loadBank() {
+        Bank loaded = Bank.loadFromFile(SAVE_FILE);
+        if (loaded != null) {
+            System.out.println("Bank data loaded: " + SAVE_FILE);
+            return loaded;
+        }
+        return Bank.getInstance("EBank");
+    }
+
     public static void start() {
+
         while (true) {
             System.out.println(MENU);
             System.out.print("Choose: ");
@@ -43,8 +54,8 @@ public class MainMenu {
                     new EmployeeLoginMenu(bank).start();
                     break;
                 case 0:
-                    bank.saveToFile("bank.dat");
-                    System.out.println("Goodbye!");
+                    bank.saveToFile(SAVE_FILE);
+                    System.out.println("Exit...");
                     return;
                 default:
                     System.out.println("Invalid choice.");

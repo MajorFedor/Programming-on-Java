@@ -51,9 +51,7 @@ public class Bank implements Serializable {
     }
 
     public void addBankAccounts(BankAccount ba) {
-        for (BankEvent event : BankEvent.values()) {
-            ba.events.subscribe(event, statistic);
-        }
+        subscribeStatistics(ba);
         bankAccounts.put(ba.getId(), ba);
     }
 
@@ -100,10 +98,27 @@ public class Bank implements Serializable {
 
     public static Bank loadFromFile(String filePath) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
-            return (Bank) ois.readObject();
+            Bank loaded = (Bank) ois.readObject();
+            instance = loaded;
+            IdRestore.restore(loaded);
+            loaded.resubscribeAllAccounts();
+            return loaded;
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Load error: " + e.getMessage());
             return null;
+        }
+    }
+
+    private void resubscribeAllAccounts() {
+        for (BankAccount ba : bankAccounts.values()) {
+            subscribeStatistics(ba);
+        }
+    }
+
+    private void subscribeStatistics(BankAccount ba) {
+        for (BankEvent event : BankEvent.values()) {
+            ba.events.clearListeners(event);
+            ba.events.subscribe(event, statistic);
         }
     }
 

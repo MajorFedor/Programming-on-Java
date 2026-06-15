@@ -19,6 +19,10 @@ public class CardDetails implements Serializable{
         this.cashback = cashback;
     }
 
+    public static long getNextCardNumber(){
+        return nextCardNumber;
+    }
+
     public String getCardNumber(){
         return cardNumber;
     }
@@ -37,6 +41,10 @@ public class CardDetails implements Serializable{
 
     public CardCategory getCardCategory(){
         return cardCategory;
+    }
+
+    public static void setNextCardNumber(long nextCardNumber){
+        CardDetails.nextCardNumber = nextCardNumber;
     }
 
     public void setCardExpiry(String expiry){

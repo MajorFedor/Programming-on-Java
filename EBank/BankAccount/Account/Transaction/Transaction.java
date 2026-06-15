@@ -50,6 +50,9 @@ public class Transaction implements Serializable{
     public long getId(){
         return id;
     }
+    public static long getNextId() {
+        return nextId;
+    }
 
     public String getFromAccount(){
         return fromAccount;
@@ -69,6 +72,10 @@ public class Transaction implements Serializable{
 
     public String getDescription(){
         return description;
+    }
+
+    public static void setNextId(long nextId) {
+        Transaction.nextId = nextId;
     }
 
     @Override

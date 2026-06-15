@@ -30,7 +30,7 @@ public class RegisterMenu {
     public void start() {
         while (true) {
             System.out.println(MENU);
-            System.out.print("Choose option: ");
+            System.out.println("Choose option: ");
 
             if (!sc.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a number.");
@@ -66,20 +66,24 @@ public class RegisterMenu {
         String passport = sc.nextLine().trim();
 
         System.out.print("Mobile number: ");
+        while (!sc.hasNextInt()) {
+            System.out.println("Enter digits: ");
+            sc.nextLine();
+        }
         String mobile = sc.nextLine().trim();
 
-        System.out.print("Age: ");
+        System.out.println("Age: ");
         while (!sc.hasNextInt()) {
-            System.out.print("Enter number: ");
+            System.out.println("Enter number: ");
             sc.nextLine();
         }
         int age = sc.nextInt();
         sc.nextLine();
 
-        System.out.print("Date of birth (DD.MM.YYYY): ");
+        System.out.println("Date of birth (DD.MM.YYYY): ");
         String dob = sc.nextLine().trim();
 
-        System.out.print("Address: ");
+        System.out.println("Address: ");
         String address = sc.nextLine().trim();
 
         Client client = new Client(fullName, passport, mobile, age, dob, address, null);
@@ -114,12 +118,12 @@ public class RegisterMenu {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Initial balance: ");
+                    System.out.println("Initial balance: ");
                     while (!sc.hasNextDouble()) { sc.nextLine(); }
                     double depositBalance = sc.nextDouble();
                     sc.nextLine();
 
-                    System.out.print("Interest rate (%): ");
+                    System.out.println("Interest rate (%): ");
                     while (!sc.hasNextDouble()) { sc.nextLine(); }
                     double depositRate = sc.nextDouble();
                     sc.nextLine();
@@ -129,17 +133,17 @@ public class RegisterMenu {
                     break;
 
                 case 2:
-                    System.out.print("Initial balance: ");
+                    System.out.println("Initial balance: ");
                     while (!sc.hasNextDouble()) { sc.nextLine(); }
                     double creditBalance = sc.nextDouble();
                     sc.nextLine();
 
-                    System.out.print("Interest rate (%): ");
+                    System.out.println("Interest rate (%): ");
                     while (!sc.hasNextDouble()) { sc.nextLine(); }
                     double creditRate = sc.nextDouble();
                     sc.nextLine();
 
-                    System.out.print("Credit limit: ");
+                    System.out.println("Credit limit: ");
                     while (!sc.hasNextDouble()) { sc.nextLine(); }
                     double creditLimit = sc.nextDouble();
                     sc.nextLine();
@@ -149,7 +153,7 @@ public class RegisterMenu {
                     break;
 
                 case 3:
-                    System.out.print("Initial balance: ");
+                    System.out.println("Initial balance: ");
                     while (!sc.hasNextDouble()) { sc.nextLine(); }
                     double cardBalance = sc.nextDouble();
                     sc.nextLine();
@@ -164,7 +168,7 @@ public class RegisterMenu {
                         cardCategory = CardCategory.STANDART;
                     }
 
-                    System.out.print("Card expiry (MM/YY): ");
+                    System.out.println("Card expiry (MM/YY): ");
                     String expiry = sc.nextLine().trim();
 
                     CardDetails card = new CardFactory().createCard(cardCategory, expiry);
@@ -186,16 +190,16 @@ public class RegisterMenu {
     private void registerEmployee() {
         System.out.println("\n--- Employee Registration ---");
 
-        System.out.print("Full name: ");
+        System.out.println("Full name: ");
         String fullName = sc.nextLine().trim();
 
-        System.out.print("Passport number: ");
+        System.out.println("Passport number: ");
         String passport = sc.nextLine().trim();
 
-        System.out.print("Mobile number: ");
+        System.out.println("Mobile number: ");
         String mobile = sc.nextLine().trim();
 
-        System.out.print("Age: ");
+        System.out.println("Age: ");
         while (!sc.hasNextInt()) {
             System.out.print("Enter number: ");
             sc.nextLine();
@@ -203,18 +207,18 @@ public class RegisterMenu {
         int age = sc.nextInt();
         sc.nextLine();
 
-        System.out.print("Date of birth (DD.MM.YYYY): ");
+        System.out.println("Date of birth (DD.MM.YYYY): ");
         String dob = sc.nextLine().trim();
 
-        System.out.print("Address: ");
+        System.out.println("Address: ");
         String address = sc.nextLine().trim();
 
-        System.out.print("Position: ");
+        System.out.println("Position: ");
         String position = sc.nextLine().trim();
 
-        System.out.print("Salary: ");
+        System.out.println("Salary: ");
         while (!sc.hasNextInt()) {
-            System.out.print("Enter number: ");
+            System.out.println("Enter number: ");
             sc.nextLine();
         }
         int salary = sc.nextInt();

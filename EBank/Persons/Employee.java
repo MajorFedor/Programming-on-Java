@@ -36,6 +36,12 @@ public class Employee extends Person{
         return employeeId;
     }
 
+    public static long getNextEmployeeId() {
+        return nextEmployeeId;
+    }
+
+    
+
     public String getPosition(){
         return position;
     }
@@ -56,6 +62,10 @@ public class Employee extends Person{
             throw new InvalidSalaryException("Salary must be positive.");
         };
         this.salary = salary;
+    }
+
+    public static void setNextEmployeeId(long nextEmployeeId) {
+        Employee.nextEmployeeId = nextEmployeeId;
     }
 
     @Override
